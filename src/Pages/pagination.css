@@ -1,0 +1,122 @@
+/* Container for products */
+.products {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+    position: relative;
+    top: 50px;
+}
+
+/* Product Card Styling */
+/* Added a border */
+.product-card {
+    background-color: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Border and shadow effect on hover */
+/* Change border color on hover */
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border-color: #ff5722;
+}
+
+/* Ensure the image doesn't spill out when it zooms */
+.product-image-wrapper {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+/* Smooth transition for zoom effect */
+/* Product Image Styling with Zoom Effect */
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Zoom the image on hover */
+/* Zoom in effect on hover */
+.product-card:hover .product-image {
+    transform: scale3d(2, 2, 2);
+    /* transform: perspective(1); */
+}
+
+/* Product Info Styling */
+.product-info {
+    padding: 16px;
+}
+
+.product-info h2 {
+    font-size: 18px;
+    margin: 0;
+    color: #333;
+}
+
+.product-info p {
+    font-size: 14px;
+    color: #666;
+    margin: 8px 0;
+}
+
+.product-price {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    text-indent: 1px;
+    font-weight: bold;
+    color: #ff5722;
+}
+
+.product-reviews {
+    margin-top: 4px;
+    padding: 9px;
+    text-align: left;
+    color: #000000;
+
+}
+
+.review {
+    margin-bottom: 5px;
+    padding: 8px;
+    border-radius: 4px;
+    color: #000000;
+    /* Light background for reviews */
+}
+
+/* pagination page
+ */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 15px 0;
+}
+
+.pagination>span {
+    padding: 10px;
+    background-color: rgba(0, 0, 255, 0.7);
+    cursor: pointer;
+    color: white;
+    margin: 6px;
+    border-radius: 20px;
+    box-shadow: 0 0 14px rgba(39, 38, 38, 0.6);
+}
+
+.page_selected {
+    background: rgb(220, 220, 220);
+
+}
+
+.page__disabled {
+    opacity: 0;
+}
