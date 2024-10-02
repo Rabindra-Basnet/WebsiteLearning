@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form data into json</title>
+</head>
+
+<body>
+    <form action="" class="form">
+        <input type="text" draggable='true' name="username" placeholder="name">
+        <input type="password" name="password" placeholder="password">
+        <input type="checkbox" name="termsConditions">
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        const formEl = document.querySelector(".form");
+
+        formEl.addEventListener('submit', event => {
+            event.preventDefault();
+
+            const formData = new FormData(formEl); // inbuilt to handle the form data
+
+            // const data = new URLSearchParams(formData); // converts into queryformat ?username="Rabindra"&......
+
+            const data = Object.fromEntries(formData);
+
+
+            fetch('./data.json', {
+                method: "POST",
+                headers: {
+                    // "content-Type": "application/x-www-form-urlencoded"
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+
+            }).then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => error.message)
+        });
+    </script>
+</body>
+
+</html>

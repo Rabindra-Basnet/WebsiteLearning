@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+    <div id="container">
+        <div id="left">
+            <div class="list" draggable="true">
+                List items 1
+            </div>
+            <div class="list" draggable="true">
+                List items 2
+            </div>
+            <div class="list" draggable="true">
+                List items 3
+            </div>
+            <div class="list" draggable="true">
+                List items 4
+            </div>
+        </div>
+        <div id="right">
+
+        </div>
+    </div>
+
+
+    <script>
+        let lists = document.querySelectorAll('.list')
+        let leftBox = document.querySelector('#left')
+        let rightBox = document.querySelector('#right')
+        let draggedItem = null
+
+        lists.forEach(list => {
+            list.addEventListener('dragstart', () => {
+                draggedItem = list; // store list 
+                setTimeout(() => {
+                    list.style.display = 'none'; // hide
+                }, 0)
+            });
+            list.addEventListener('dragend', () => {
+                setTimeout(() => {
+                    draggedItem.style.display = "block"; // show element after dragging
+                    draggedItem = null;
+                }, 0)
+            });
+        });
+
+        const handleDrop = (element) => {
+            element.addEventListener('dragover', e => {
+                e.preventDefault()
+            })
+            element.addEventListener('drop', e => {
+                e.preventDefault();
+                draggedItem && element.appendChild(draggedItem)
+            })
+        }
+        handleDrop(leftBox);
+        handleDrop(rightBox)
+    </script>
+</body>
+
+</html>
+
+<!-- // rightBox.addEventListener('dragover', (e) => {
+//     e.preventDefault(); // prevent default to allow drop
+// })
+
+// // Allow dropping into right box
+// rightBox.addEventListener('drop', (e) => {
+//     e.preventDefault(); // prevent default behavior
+//     draggedItem && rightBox.appendChild(draggedItem); // move dragged element to right
+// })
+// leftBox.addEventListener('dragover', (e) => {
+//     e.preventDefault(); // prevent default to allow drop
+// })
+
+// // Allow dropping into right box
+// leftBox.addEventListener('drop', (e) => {
+//     e.preventDefault(); // prevent default behavior
+//     draggedItem && leftBox.appendChild(draggedItem); // move dragged element to right
+// }) -->
